@@ -10,7 +10,7 @@ var leafRadius = 10;
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
-  leafRadius = 10 * (ctx.canvas.width / 1024);
+  leafRadius = 20 * (ctx.canvas.width / 1024);
   c = 9 * (ctx.canvas.width / 1024);
 
   background("#fff");
@@ -28,6 +28,7 @@ exports.draw = function() {
 
   var l = leaf(ctx)
   l.radius = leafRadius;
+  l.color = 1;
   l.x = r * Math.cos(theta)
   l.y = r * Math.sin(theta)
   l.draw(ctx)
