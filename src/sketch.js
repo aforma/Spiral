@@ -1,33 +1,26 @@
+var leaf = require("./leaf");
+
 var ctx = undefined;
 var env = undefined;
+var c = 5;
+var n = 0;
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
 
   background("#fff");
-  placeholder();
-  setTimeout(function(){
-    env.done();
-  }, 1000)
 }
 
 exports.draw = function() {
+  var theta = n * (137.3 * Math.PI / 180);
+  var r = c * Math.sqrt(n);
 
-}
-
-function placeholder() {
-  ctx.fillStyle = "#000";
-  var fontSize = ctx.canvas.width / 2.5;
-  ctx.font = fontSize + "px serif";
-  var textMeasure = ctx.measureText("Aquarela");
-  var marginLeft = ctx.canvas.width * 0.01;
-  ctx.fillText("Aquarela", marginLeft, ctx.canvas.height / 0.97);
-
-  var radius = ctx.canvas.width / 30;
-  ctx.beginPath();
-  ctx.arc(marginLeft + radius * 2,marginLeft + radius * 2,radius,0,Math.PI*2,true); // Outer circle
-  ctx.fill()
+  var l = leaf()
+  l.x = r * Math.cos(theta)
+  l.y = r * Math.sin(theta)
+  l.draw(ctx)
+  n++;
 }
 
 function background(color){
