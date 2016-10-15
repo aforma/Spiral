@@ -7,21 +7,28 @@ module.exports = function(ctx){
 		y:0,
 		radius: R,
 		color:0,
+		angle:0,
 		draw: function(ctx){
 			// ctx.strokeStyle = "#000";
-			ctx.fillStyle = "rgba(0,0,0,"+this.color+")";
-			if(this.radius < 3 * (ctx.canvas.width / 1024)) {
-				ctx.fillStyle = "#000";
-			}
-			// ctx.lineWidth = 1 * (ctx.canvas.width / 1024)
+			ctx.save();
+			ctx.fillStyle = "#333";
 			ctx.beginPath();
-			// ctx.arc(ctx.canvas.width / 2 + this.x,ctx.canvas.height / 2 + this.y,this.radius,0,2*Math.PI);
-			ctx.moveTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y);
-			ctx.lineTo(ctx.canvas.width / 2 + this.x + this.radius, ctx.canvas.height / 2 + this.y + this.radius / 2);
-			ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y + this.radius);
-			ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y);
+			ctx.translate(this.x, this.y)
+			ctx.rotate(this.angle);
+			ctx.moveTo(0, 0);
+			ctx.lineTo(this.radius * 3, this.radius / 2);
+			ctx.lineTo(0, this.radius / 2);
 			ctx.fill();	
-			// ctx.stroke();
+			ctx.stroke();	
+			ctx.fillStyle = "rgba(255,255,255,1)";
+			ctx.beginPath();
+			ctx.moveTo(0, this.radius / 2);
+			ctx.lineTo(this.radius * 2, this.radius / 2);
+			ctx.lineTo(0, this.radius);
+			ctx.lineTo(0, 0);
+			ctx.fill();	
+			ctx.stroke();	
+			ctx.restore();
 		}
 	}
 }

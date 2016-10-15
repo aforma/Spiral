@@ -11,7 +11,7 @@ exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
   leafRadius = 20 * (ctx.canvas.width / 1024);
-  c = 9 * (ctx.canvas.width / 1024);
+  c = 10 * (ctx.canvas.width / 1024);
 
   background("#fff");
 }
@@ -29,8 +29,9 @@ exports.draw = function() {
   var l = leaf(ctx)
   l.radius = leafRadius;
   l.color = 1;
-  l.x = r * Math.cos(theta)
-  l.y = r * Math.sin(theta)
+  l.angle = theta;
+  l.x = (ctx.canvas.width / 2) + r * Math.cos(theta)
+  l.y = (ctx.canvas.height / 2) + r * Math.sin(theta)
   l.draw(ctx)
   n++;
   c -= 0.001 * (ctx.canvas.width / 1024);
@@ -39,4 +40,8 @@ exports.draw = function() {
 function background(color){
   ctx.fillStyle = color;
   ctx.fillRect(0,0, ctx.canvas.width, ctx.canvas.height);
+}
+
+function signature() {
+
 }
