@@ -8,15 +8,22 @@ module.exports = function(ctx){
 		radius: R,
 		color:0,
 		angle:0,
-		draw: function(ctx){
-			// ctx.strokeStyle = "#000";
-			ctx.lineWidth = 1 * (ctx.canvas.width / 1024);
+		mode:0,
+		lineWidth: 1,
+		draw: function(ctx) {
+			var lWidth = 1;
+
+			if(this.radius > 40) {
+				this.lineWidth += 0.5;
+			}
+			ctx.lineWidth = this.lineWidth;
 			var percent = this.radius / (50 * (ctx.canvas.width / 1024))
 			this.color = 255 * percent;
-			if(this.radius > (13.5  * (ctx.canvas.width / 1024)) && this.radius < (15  * (ctx.canvas.width / 1024))) {
-				this.drawPetal();
+
+			if(this.mode === 0) {
+				// this.drawCircle();
 			} else {
-				this.drawCircle();
+				this.drawPetal();
 			}
 		},
 		drawCircle:function(){
@@ -47,7 +54,7 @@ module.exports = function(ctx){
 			ctx.restore();
 		},
 		drawPetal:function(){
-			var size = this.radius / (50 * (ctx.canvas.width / 1024));
+			var size = this.radius / (50 * (ctx.canvas.width / 1024))
 			size *= 4;
 			var numLines = 5;
 			var pointB = 50 * (ctx.canvas.width / 1024);
