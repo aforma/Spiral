@@ -12,16 +12,16 @@ exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
   leafRadius = 7 * (ctx.canvas.width / 1024);
-  c = 4 * (ctx.canvas.width / 1024);
+  c = 5 * (ctx.canvas.width / 1024);
 
   background("#fff");
-  // blackCircle();
+  blackCircle();
 }
 
 exports.draw = function() {
   var theta = n * (137.3 * Math.PI / 180);
   r = c * Math.sqrt(n);
-  if(leafRadius < (1 * (ctx.canvas.width / 1024))) {
+  if(leafRadius < (2 * (ctx.canvas.width / 1024))) {
     env.done();
     return;
   }
@@ -30,9 +30,9 @@ exports.draw = function() {
 
   } else {
     reversed = true
-    leafRadius = leafRadius * 0.9992;
+    leafRadius = leafRadius * 0.99901;
   }
-  c -= 0.0001 * (ctx.canvas.width / 1024);
+  c -= 0 * (ctx.canvas.width / 1024);
 
   var l = leaf(ctx)
   l.radius = leafRadius;
@@ -49,8 +49,9 @@ function background(color){
 }
 
 function blackCircle() {
-  ctx.fillStyle = "#000";
+  ctx.strokeStyle = "#000";
+  ctx.lineWidth = 10 * (ctx.canvas.width / 1024);
   ctx.beginPath();
   ctx.arc(ctx.canvas.width / 2,ctx.canvas.height / 2,(290 * (ctx.canvas.width / 1024)),0,2*Math.PI);
-  ctx.fill(); 
+  ctx.stroke(); 
 }
