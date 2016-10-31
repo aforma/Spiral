@@ -1,4 +1,4 @@
-### Aquarela
+### Spiral
 
 ![artwork](dist/thumbnail.jpg)
 
