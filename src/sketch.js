@@ -50,8 +50,8 @@ function background(color){
 
 function blackCircle() {
   ctx.strokeStyle = "#000";
-  ctx.lineWidth = 10 * (ctx.canvas.width / 1024);
+  ctx.lineWidth = 1
   ctx.beginPath();
-  ctx.arc(ctx.canvas.width / 2,ctx.canvas.height / 2,(290 * (ctx.canvas.width / 1024)),0,2*Math.PI);
+  ctx.arc(ctx.canvas.width / 2,ctx.canvas.height / 2,(265 * (ctx.canvas.width / 1024)),0,2*Math.PI);
   ctx.stroke(); 
 }
