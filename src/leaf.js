@@ -8,21 +8,21 @@ module.exports = function(ctx){
 		radius: R,
 		color:0,
 		draw: function(ctx){
-			ctx.strokeStyle = "#FFF";
-			ctx.fillStyle = "rgba(255,255,255,"+this.color+")";
-			if(this.radius < 3 * (ctx.canvas.width / 1024)) {
+			// ctx.strokeStyle = "#FFF";
+			ctx.fillStyle = "rgba(0,0,0,"+this.color+")";
+			if(this.radius < 3) {
 				ctx.fillStyle = "#000";
 			}
-			ctx.lineWidth = 1 * (ctx.canvas.width / 1024)
+			ctx.lineWidth = 1  * (ctx.canvas.width / 1024)
 			ctx.beginPath();
 			ctx.arc(ctx.canvas.width / 2 + this.x,ctx.canvas.height / 2 + this.y,this.radius * 0.3,0,2*Math.PI);
 			// ctx.moveTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y);
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x + this.radius, ctx.canvas.height / 2 + this.y + this.radius / 2);
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y + this.radius);
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y);
-			if(this.radius < 3 * (ctx.canvas.width / 1024)) {
-				ctx.fill();	
-				// ctx.stroke();
+			if(this.radius < 3) {
+				// ctx.fill();	
+				ctx.stroke();
 			} else {
 				ctx.fill();	
 			}

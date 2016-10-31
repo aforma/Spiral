@@ -15,13 +15,13 @@ exports.setup = function(_ctx, _env){
   c = 7 * (ctx.canvas.width / 1024);
 
   background("#fff");
-  blackCircle();
+  // blackCircle();
 }
 
 exports.draw = function() {
   var theta = n * (137.3 * Math.PI / 180);
   r = c * Math.sqrt(n);
-  if(leafRadius < (3 * (ctx.canvas.width / 1024))) {
+  if(leafRadius < (1)) {
     console.log("done")
     env.done();
     return;
