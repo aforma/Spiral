@@ -2,57 +2,46 @@ var leaf = require("./leaf");
 
 var ctx = undefined;
 var env = undefined;
-var c = 5;
-var n = 5000;
+var c = 10;
+var n = 0;
 var r = 0
-var leafRadius = 0;
-var mode = 0;
-var reseted = false;
+var leafRadius = 10;
+var reversed = false;
 
 exports.setup = function(_ctx, _env){
   ctx = _ctx;
   env = _env;
-  leafRadius = 1;
-  // n = 1000 * (ctx.canvas.width / 1024)
-  c = 9 * (ctx.canvas.width / 1024);
+  leafRadius = 10 * (ctx.canvas.width / 1024);
+  c = 7 * (ctx.canvas.width / 1024);
 
   background("#fff");
+  blackCircle();
 }
 
 exports.draw = function() {
   var theta = n * (137.3 * Math.PI / 180);
   r = c * Math.sqrt(n);
-
-  if(n < 1200 && !reseted) {
-    leafRadius += 0.05;
-    mode = 1;
-  } else {
-    leafRadius += 0.01;
+  if(leafRadius < (3 * (ctx.canvas.width / 1024))) {
+    console.log("done")
+    env.done();
+    return;
   }
+  if(leafRadius < (13 * (ctx.canvas.width / 1024)) && !reversed) {
+    leafRadius = leafRadius * 1.001;
+
+  } else {
+    reversed = true
+    leafRadius = leafRadius * 0.9993;
+  }
+  c -= 0.0005 * (ctx.canvas.width / 1024);
 
   var l = leaf(ctx)
-
   l.radius = leafRadius;
-  l.mode = mode
   l.color = 1;
-  l.angle = theta;
-  l.x = (ctx.canvas.width / 2) + r * Math.cos(theta)
-  l.y = (ctx.canvas.height / 2) + r * Math.sin(theta)
+  l.x = r * Math.cos(theta)
+  l.y = r * Math.sin(theta)
   l.draw(ctx)
-  n--;
-  
-  if(leafRadius > (5  * (ctx.canvas.width / 1024))) {
-    c -= 0.005;
-  } else {
-    c -= 0.001;
-  }
-
-  if(n < 0) {
-    mode = 0
-    reseted = true
-    env.done();
-    console.log("reset");
-  }
+  n++;
 }
 
 function background(color){
@@ -60,6 +49,9 @@ function background(color){
   ctx.fillRect(0,0, ctx.canvas.width, ctx.canvas.height);
 }
 
-function signature() {
-
+function blackCircle() {
+  ctx.fillStyle = "#000";
+  ctx.beginPath();
+  ctx.arc(ctx.canvas.width / 2,ctx.canvas.height / 2,(290 * (ctx.canvas.width / 1024)),0,2*Math.PI);
+  ctx.fill(); 
 }
