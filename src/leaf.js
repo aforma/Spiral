@@ -10,7 +10,7 @@ module.exports = function(ctx){
 		draw: function(ctx){
 			// ctx.strokeStyle = "#FFF";
 			ctx.fillStyle = "rgba(0,0,0,"+this.color+")";
-			if(this.radius < 3) {
+			if(this.radius < (3 * (ctx.canvas.width / 1024))) {
 				ctx.fillStyle = "#000";
 			}
 			ctx.lineWidth = 1  * (ctx.canvas.width / 1024)
@@ -20,7 +20,7 @@ module.exports = function(ctx){
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x + this.radius, ctx.canvas.height / 2 + this.y + this.radius / 2);
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y + this.radius);
 			// ctx.lineTo(ctx.canvas.width / 2 + this.x, ctx.canvas.height / 2 + this.y);
-			if(this.radius < 3) {
+			if(this.radius < (1 * (ctx.canvas.width / 1024))) {
 				// ctx.fill();	
 				ctx.stroke();
 			} else {
